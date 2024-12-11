@@ -128,4 +128,24 @@ public class AppService {
         System.out.println("Not found expense" + "(ID " + id + ")");
         return;
     }
+
+    public void summaryExpense() {
+        int total = 0;
+        for (Expense expense: expenses) {
+            total += expense.getAmount();
+        }
+        System.out.println("Total expenses: " + "$" + total);
+    }
+
+    public void summaryExpenseWithMonth(int month) {
+        int total = 0;
+        for (Expense expense: expenses) {
+            LocalDate dateNow = LocalDate.now();
+            LocalDate date = expense.getDate();
+            if (date.getYear() == dateNow.getYear() && date.getMonthValue() == month) {
+                total += expense.getAmount();
+            }
+        }
+        System.out.println("Total expenses: " + "$" + total);
+    }
 }
