@@ -81,3 +81,10 @@ Temporary Items
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,java
+
+# Database
+*.csv
+
+# ETC
+bin/
+lib/
