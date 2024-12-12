@@ -1,18 +1,18 @@
-## Getting Started
+# Expense Tracker (Java)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Expense Tracker is a expense management application. You can create, view, edit, delete, summary expenses. This project is an assignment for the link (https://roadmap.sh/projects/expense-tracker).
 
-## Folder Structure
+## Usage
 
-The workspace contains two folders by default, where:
+`git clone https://github.com/ehdrb92/expense-tracker-java.git`
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+`cd expense-tracker-java/src`
+`javac App.java`
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- add expense: `java App add --description {description_value} --amount {amount_value}`
+- get expenses: `java App list`
+- update expense: `java App update {id} --{option} {option_value}`
+  - option: date, description, amount
+- delete expense: `java App delete {id}`
+- summary expense: `java App summary --month {month}`
+  - month option is optional
