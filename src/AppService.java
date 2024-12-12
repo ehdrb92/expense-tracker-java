@@ -13,6 +13,7 @@ public class AppService {
     final private CommonUtil commonUtil = new CommonUtil();
     final private String filePath = "database.csv";
     List<Expense> expenses = new ArrayList<>();
+    int lastId = 0;
 
     public void initApplication() {
         File file = new File(filePath);
@@ -42,13 +43,15 @@ public class AppService {
                 LocalDate convertedDate = commonUtil.convertStringToLocalDate(date);
 
                 expenses.add(new Expense(id, convertedDate, description, amount));
+
+                lastId = (lastId < id) ? id : lastId;
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void saveDatas(List<Expense> expenses) {
+    public void saveDatas() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("ID,Date,Description,Amount");
             writer.newLine();
@@ -65,15 +68,15 @@ public class AppService {
 
     public void createExpense(Expense expense) {
         expenses.add(expense);
-        System.out.println("Expense added successfully" + "(ID " + expense.getId() + ")");
+        System.out.println("Expense added successfully " + "(ID " + expense.getId() + ")");
     }
 
     public void getExpenses() {
-        System.out.println("ID  Date      Description  Amount");
+        System.out.println("ID  Date        Description  Amount");
         for (Expense expense: expenses) {
-            System.out.print(expense.getId());
-            System.out.print(expense.getDate().toString());
-            System.out.print(expense.getDescription());
+            System.out.print(expense.getId() + "   ");
+            System.out.print(expense.getDate().toString() + "  ");
+            System.out.print(expense.getDescription() + "        ");
             System.out.print("$" + expense.getAmount());
             System.out.println();
         }
@@ -84,11 +87,11 @@ public class AppService {
         for (Expense expense: expenses) {
             if (id == expense.getId()) {
                 expense.setDate(commonUtil.convertStringToLocalDate(date));
-                System.out.println("Expense updated successfully" + "(ID " + id + ")");
+                System.out.println("Expense updated successfully " + "(ID " + id + ")");
                 return;
             }
         }
-        System.out.println("Not found expense" + "(ID " + id + ")");
+        System.out.println("Not found expense " + "(ID " + id + ")");
         return;
     }
 
@@ -96,11 +99,11 @@ public class AppService {
         for (Expense expense: expenses) {
             if (id == expense.getId()) {
                 expense.setDescription(description);
-                System.out.println("Expense updated successfully" + "(ID " + id + ")");
+                System.out.println("Expense updated successfully " + "(ID " + id + ")");
                 return;
             }
         }
-        System.out.println("Not found expense" + "(ID " + id + ")");
+        System.out.println("Not found expense " + "(ID " + id + ")");
         return;
     }
 
@@ -108,11 +111,11 @@ public class AppService {
         for (Expense expense: expenses) {
             if (id == expense.getId()) {
                 expense.setAmount(amount);
-                System.out.println("Expense updated successfully" + "(ID " + id + ")");
+                System.out.println("Expense updated successfully " + "(ID " + id + ")");
                 return;
             }
         }
-        System.out.println("Not found expense" + "(ID " + id + ")");
+        System.out.println("Not found expense " + "(ID " + id + ")");
         return;
     }
 
@@ -125,7 +128,7 @@ public class AppService {
                 return;
             }
         }
-        System.out.println("Not found expense" + "(ID " + id + ")");
+        System.out.println("Not found expense " + "(ID " + id + ")");
         return;
     }
 
