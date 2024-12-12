@@ -20,12 +20,34 @@ public class App {
                 appService.getExpenses();
                 break;
             case "update":
+                switch (args[2]) {
+                    case "--date":
+                        appService.updateExpenseDate(Integer.parseInt(args[1]), args[3]);
+                        break;
+                    case "--description":
+                        appService.updateExpenseDescription(Integer.parseInt(args[1]), args[3]);
+                        break;
+                    case "--amount":
+                        appService.updateExpenseAmount(Integer.parseInt(args[1]), Integer.parseInt(args[3]));
+                        break;
+                    default:
+                        System.out.println("Check update option");
+                        break;
+                }
                 break;
             case "delete":
+                appService.deleteExpense(Integer.parseInt(args[1]));
                 break;
             case "summary":
+                if (args.length == 1) {
+                    appService.summaryExpense();
+                } else {
+                    appService.summaryExpenseWithMonth(Integer.parseInt(args[2]));
+                }
                 break;
             default:
+                System.out.println("check main command option");
+                System.out.println("main option: add, list, update, delete, summary");
                 break;
         }
 

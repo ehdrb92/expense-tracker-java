@@ -122,7 +122,7 @@ public class AppService {
     public void deleteExpense(int id) {
         Iterator<Expense> iterator = expenses.iterator();
         while (iterator.hasNext()) {
-            if (iterator.next().getId() == 1) {
+            if (iterator.next().getId() == id) {
                 iterator.remove();
                 System.out.println("Expense deleted successfully" + "(ID " + id + ")");
                 return;
