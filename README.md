@@ -6,7 +6,7 @@ Expense Tracker is a expense management application. You can create, view, edit,
 
 `git clone https://github.com/ehdrb92/expense-tracker-java.git`
 
-`cd expense-tracker-java/src`
+`cd expense-tracker-java/src`  
 `javac App.java`
 
 - add expense: `java App add --description {description_value} --amount {amount_value}`
